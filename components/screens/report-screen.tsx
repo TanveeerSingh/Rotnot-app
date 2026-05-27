@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { TrendingUp, TrendingDown, Leaf } from "lucide-react"
+import { TrendingUp, TrendingDown } from "lucide-react"
 import { BottomNav } from "./bottom-nav"
 import { LineChart, Line, XAxis, ResponsiveContainer } from "recharts"
 
@@ -87,15 +87,12 @@ export function ReportScreen({ onNavigate }: ReportScreenProps) {
               className="bg-card rounded-xl p-3 border border-border flex items-center justify-between"
             >
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Leaf className="w-4 h-4 text-primary" />
-                </div>
+                <div className="w-8 h-8 bg-primary/10 rounded-lg" />
                 <span className="text-foreground text-sm">{stat.label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-foreground font-semibold text-sm">{stat.value}</span>
-                <div className={`flex items-center gap-0.5 text-[10px] font-medium ${stat.positive ? "text-primary" : "text-destructive"}`}>
-                  {stat.positive ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+                <div className={`text-[10px] font-medium ${stat.positive ? "text-primary" : "text-destructive"}`}>
                   {stat.trend}
                 </div>
               </div>
