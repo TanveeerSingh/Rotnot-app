@@ -89,11 +89,8 @@ export function ReportScreen({ onNavigate }: ReportScreenProps) {
               <div className="flex items-center">
                 <span className="text-foreground text-sm">{stat.label}</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center">
                 <span className="text-foreground font-semibold text-sm">{stat.value}</span>
-                <div className={`text-[10px] font-medium ${stat.positive ? "text-primary" : "text-destructive"}`}>
-                  {stat.trend}
-                </div>
               </div>
             </motion.div>
           ))}
