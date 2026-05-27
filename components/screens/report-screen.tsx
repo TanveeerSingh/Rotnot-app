@@ -86,8 +86,7 @@ export function ReportScreen({ onNavigate }: ReportScreenProps) {
               transition={{ duration: 0.3, delay: 0.2 + i * 0.1 }}
               className="bg-card rounded-xl p-3 border border-border flex items-center justify-between"
             >
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary/10 rounded-lg" />
+              <div className="flex items-center">
                 <span className="text-foreground text-sm">{stat.label}</span>
               </div>
               <div className="flex items-center gap-2">
