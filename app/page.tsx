@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { PhoneFrame } from "@/components/phone-frame"
+import { SplashScreen } from "@/components/screens/splash-screen"
 import { WelcomeScreen } from "@/components/screens/welcome-screen"
 import { AuthScreen } from "@/components/screens/auth-screen"
 import { ConnectDeviceScreen } from "@/components/screens/connect-device-screen"
@@ -11,10 +12,10 @@ import { AlertsScreen } from "@/components/screens/alerts-screen"
 import { ReportScreen } from "@/components/screens/report-screen"
 import { ProfileScreen } from "@/components/screens/profile-screen"
 
-type Screen = "welcome" | "auth" | "connect" | "home" | "alerts" | "report" | "profile"
+type Screen = "splash" | "welcome" | "auth" | "connect" | "home" | "alerts" | "report" | "profile"
 
 export default function Home() {
-  const [currentScreen, setCurrentScreen] = useState<Screen>("welcome")
+  const [currentScreen, setCurrentScreen] = useState<Screen>("splash")
   const [userName, setUserName] = useState<string>("Tanveer")
   
   const handleNavigate = (screen: string) => {
@@ -28,6 +29,8 @@ export default function Home() {
   
   const renderScreen = () => {
     switch (currentScreen) {
+      case "splash":
+        return <SplashScreen onComplete={() => setCurrentScreen("welcome")} />
       case "welcome":
         return <WelcomeScreen onContinue={() => setCurrentScreen("auth")} />
       case "auth":
@@ -62,7 +65,7 @@ export default function Home() {
       {/* Screen navigation for desktop */}
       <div className="fixed top-6 left-6 hidden lg:flex flex-col gap-1.5">
         <p className="text-xs font-medium text-muted-foreground mb-1.5">Navigate screens</p>
-        {(["welcome", "auth", "connect", "home", "alerts", "report", "profile"] as Screen[]).map((screen) => (
+        {(["splash", "welcome", "auth", "connect", "home", "alerts", "report", "profile"] as Screen[]).map((screen) => (
           <button
             key={screen}
             onClick={() => setCurrentScreen(screen)}
@@ -72,7 +75,15 @@ export default function Home() {
                 : "bg-card text-foreground hover:bg-secondary border border-border"
             }`}
           >
-            {screen === "connect" ? "Connect Device" : screen === "auth" ? "Sign In" : screen === "report" ? "Analytics" : screen}
+            {screen === "splash"
+              ? "Splash"
+              : screen === "connect"
+                ? "Connect Device"
+                : screen === "auth"
+                  ? "Sign In"
+                  : screen === "report"
+                    ? "Analytics"
+                    : screen}
           </button>
         ))}
       </div>
